@@ -1,0 +1,2 @@
+(this["webpackJsonperp-crm"]=this["webpackJsonperp-crm"]||[]).push([[5],{201:function(t,c,e){"use strict";e.r(c);var r=e(0),n=e(67),s=e(199),b=e(117),u=e(4);c.default=function(){var t=Object(n.b)();return Object(r.useEffect)((function(){t(Object(s.b)())}),[]),Object(u.jsx)(b.a,{})}}}]);
+//# sourceMappingURL=Logout.da5399fc.chunk.js.map
