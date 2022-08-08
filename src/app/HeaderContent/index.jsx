@@ -25,8 +25,8 @@ export default function HeaderContent() {
       <div className="pad15">
         <Avatar size="large" className="last" src={photo} style={{ float: 'left' }} />
         <div className="info">
-          <p className="strong">Salah Eddine Lalami</p>
-          <p>Lalami.sdn@gmail.com</p>
+          <p className="strong">Somak Paul</p>
+          <p>mail2somakpal@gmail.com</p>
         </div>
       </div>
       <div className="line"></div>
