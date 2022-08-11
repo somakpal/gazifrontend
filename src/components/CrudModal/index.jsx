@@ -34,7 +34,7 @@ export default function DeleteModal({ config, children }) {
   }, [isSuccess, current]);
 
   const handleOk = () => {
-    const id = current._id;
+    const id = current.id;
     dispatch(crud.delete({ entity, id }));
   };
   const handleCancel = () => {

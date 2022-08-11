@@ -8,7 +8,7 @@ export default function Admin() {
   const searchConfig = {
     displayLabels: ['name', 'surname'],
     searchFields: 'email,name,surname',
-    outputValue: '_id',
+    outputValue: 'id',
   };
 
   const PANEL_TITLE = 'Admin Panel';

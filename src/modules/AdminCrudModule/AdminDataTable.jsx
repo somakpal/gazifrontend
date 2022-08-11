@@ -28,7 +28,7 @@ function DropDownRowMenu({ row }) {
   const dispatch = useDispatch();
   const { crudContextAction } = useCrudContext();
   const { panel, collapsedBox, modal, advancedBox, readBox, editBox } = crudContextAction;
-  const item = useSelector(selectItemById(row._id));
+  const item = useSelector(selectItemById(row.id));
   const Show = () => {
     dispatch(crud.currentItem({ data: item }));
     panel.open();

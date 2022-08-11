@@ -22,7 +22,7 @@ export default function UpdatePassword({ config }) {
   const { onFetch, result, isLoading, isSuccess } = useOnFetch();
 
   const handelSubmit = (fieldsValue) => {
-    const entity = 'admin/password-update/' + current._id;
+    const entity = 'admin/password-update/' + current.id;
     const updateFn = () => {
       return request.patch({ entity, jsonData: fieldsValue });
     };

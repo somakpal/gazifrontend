@@ -7,9 +7,9 @@ import useFetch from '@/hooks/useFetch';
 import { EllipsisOutlined, EyeOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 function DropDownRowMenu({ row }) {
-  const Show = () => {};
-  function Edit() {}
-  function Delete() {}
+  const Show = () => { };
+  function Edit() { }
+  function Delete() { }
   return (
     <Menu style={{ width: 130 }}>
       <Menu.Item icon={<EyeOutlined />} onClick={Show}>
@@ -51,7 +51,7 @@ export default function RecentTable({ ...props }) {
     <>
       <Table
         columns={dataTableColumns}
-        rowKey={(item) => item._id}
+        rowKey={(item) => item.id}
         dataSource={isSuccess && firstFiveItems()}
         pagination={false}
         loading={isLoading}

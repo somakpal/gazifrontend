@@ -9,7 +9,7 @@ export default function PaymentInvoice() {
   const searchConfig = {
     displayLabels: ['number'],
     searchFields: 'number',
-    outputValue: '_id',
+    outputValue: 'id',
   };
 
   const entityDisplayLabels = ['number'];

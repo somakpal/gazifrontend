@@ -18,7 +18,7 @@ import { useMoney } from '@/settings';
 const Item = ({ item }) => {
   const { moneyFormatter } = useMoney();
   return (
-    <Row gutter={[12, 0]} key={item._id}>
+    <Row gutter={[12, 0]} key={item.id}>
       <Col className="gutter-row" span={11}>
         <p style={{ marginBottom: 5 }}>
           <strong>{item.itemName}</strong>
@@ -119,7 +119,7 @@ export default function ReadItem({ config }) {
             key={`${uniqueId()}`}
             onClick={() => {
               window.open(
-                `${DOWNLOAD_BASE_URL}${entity}/${entity}-${currentErp._id}.pdf`,
+                `${DOWNLOAD_BASE_URL}${entity}/${entity}-${currentErp.id}.pdf`,
                 '_blank'
               );
             }}
@@ -216,7 +216,7 @@ export default function ReadItem({ config }) {
         <Divider />
       </Row>
       {itemslist.map((item) => (
-        <Item key={item._id} item={item}></Item>
+        <Item key={item.id} item={item}></Item>
       ))}
       <div
         style={{

@@ -9,7 +9,7 @@ export default function PaymentMode() {
   const searchConfig = {
     displayLabels: ['name'],
     searchFields: 'name',
-    outputValue: '_id',
+    outputValue: 'id',
   };
 
   const entityDisplayLabels = ['name'];

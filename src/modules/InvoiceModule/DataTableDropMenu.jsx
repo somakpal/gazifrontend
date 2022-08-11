@@ -19,7 +19,7 @@ export default function DataTableDropMenu({ row, entity }) {
   const dispatch = useDispatch();
   const { erpContextAction } = useErpContext();
   const { readPanel, updatePanel, recordPanel, modal } = erpContextAction;
-  const item = useSelector(selectItemById(row._id));
+  const item = useSelector(selectItemById(row.id));
   function Read() {
     dispatch(erp.currentItem({ data: item }));
     readPanel.open();
@@ -38,7 +38,7 @@ export default function DataTableDropMenu({ row, entity }) {
     modal.open();
   }
   function Download() {
-    window.open(`${DOWNLOAD_BASE_URL}${entity}/${entity}-${row._id}.pdf`, '_blank');
+    window.open(`${DOWNLOAD_BASE_URL}${entity}/${entity}-${row.id}.pdf`, '_blank');
   }
   return (
     <Menu style={{ minWidth: 130 }}>

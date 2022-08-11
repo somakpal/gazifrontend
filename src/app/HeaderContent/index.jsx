@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { Avatar, Menu, Dropdown } from 'antd';
 
 import {
@@ -9,6 +9,8 @@ import {
   MailOutlined,
   LogoutOutlined,
   BellOutlined,
+  DashboardOutlined,
+  CustomerServiceOutlined,
 } from '@ant-design/icons';
 import photo from '@/style/images/photo.png';
 
@@ -34,6 +36,14 @@ export default function HeaderContent() {
         <Menu>
           <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
             <Menu.ItemGroup key="g1" title="Item 1">
+              <Menu.Item key={'Dashboard'} icon={<DashboardOutlined />}>
+                <Link to={'/'} />
+                Dashboard
+              </Menu.Item>
+              <Menu.Item key={'Customer'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/customer'} />
+                Customer
+          </Menu.Item>
               <Menu.Item key="1">Option 1</Menu.Item>
               <Menu.Item key="2">Option 2</Menu.Item>
             </Menu.ItemGroup>

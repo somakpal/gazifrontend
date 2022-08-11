@@ -9,7 +9,7 @@ export default function Currency() {
   const searchConfig = {
     displayLabels: ['name'],
     searchFields: 'name',
-    outputValue: '_id',
+    outputValue: 'id',
   };
 
   const entityDisplayLabels = ['name'];

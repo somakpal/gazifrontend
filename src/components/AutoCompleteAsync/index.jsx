@@ -8,7 +8,7 @@ export default function AutoCompleteAsync({
   entity,
   displayLabels,
   searchFields,
-  outputValue = '_id',
+  outputValue = 'id',
   value, /// this is for update
   onChange, /// this is for update
 }) {

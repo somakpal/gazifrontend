@@ -8,7 +8,7 @@ function Customer() {
   const searchConfig = {
     displayLabels: ['company'],
     searchFields: 'company,managerSurname,managerName',
-    outputValue: '_id',
+    outputValue: 'id',
   };
 
   const entityDisplayLabels = ['company'];

@@ -6,16 +6,17 @@ import { Select } from 'antd';
 export default function SelectAsync({
   entity,
   displayLabels = ['name'],
-  outputValue = '_id',
+  outputValue = 'id',
   value,
   onChange,
+  options = {}
 }) {
   const [isLoading, setIsLoading] = useState(false);
   const [selectOptions, setOptions] = useState([]);
   const [currentValue, setCurrentValue] = useState(undefined);
 
   const asyncList = () => {
-    return request.list({ entity });
+    return request.list({ entity, options });
   };
   const { result, isLoading: fetchIsLoading, isSuccess } = useFetch(asyncList);
   useEffect(() => {

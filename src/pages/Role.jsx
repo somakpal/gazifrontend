@@ -8,7 +8,7 @@ export default function Role() {
   const searchConfig = {
     displayLabels: ['displayName'],
     searchFields: 'codeName,displayName',
-    outputValue: '_id',
+    outputValue: 'id',
   };
 
   const PANEL_TITLE = 'Role Panel';

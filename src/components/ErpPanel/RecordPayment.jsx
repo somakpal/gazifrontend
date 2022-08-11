@@ -40,8 +40,8 @@ export default function RecordPayment({ config }) {
 
   const onSubmit = (fieldsValue) => {
     if (currentInvoice) {
-      const { _id: invoice } = currentInvoice;
-      const client = currentInvoice.client && currentInvoice.client._id;
+      const { id: invoice } = currentInvoice;
+      const client = currentInvoice.client && currentInvoice.client.id;
       fieldsValue = {
         ...fieldsValue,
         invoice,

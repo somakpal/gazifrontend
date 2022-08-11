@@ -80,7 +80,7 @@ export default function UpdateItem({ config, UpdateForm }) {
       }
     }
 
-    const id = current._id;
+    const id = current.id;
     dispatch(erp.update({ entity, id, jsonData: fieldsValue }));
   };
   useEffect(() => {
