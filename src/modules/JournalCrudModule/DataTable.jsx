@@ -219,7 +219,7 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
                         <div className="line"></div>
                     </Col>
                     <div className="space10"></div>
-                    <Col className="gutter-row" span={4}>
+                    <Col className="gutter-row" span={6}>
                         <p
                             style={{
                                 paddingLeft: '1px',
@@ -239,7 +239,7 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
                             formatter={(value) => money.amountFormatter({ amount: value })}
                         />
                     </Col>
-                    <Col className="gutter-row" span={4}>
+                    <Col className="gutter-row" span={6}>
                         <p
                             style={{
                                 paddingLeft: '1px',
@@ -259,7 +259,7 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
                             formatter={(value) => money.amountFormatter({ amount: value })}
                         />
                     </Col>
-                    <Col className="gutter-row" span={5}>
+                    <Col className="gutter-row" span={6}>
                         <p
                             style={{
                                 paddingLeft: '1px',
@@ -279,7 +279,7 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
                             formatter={(value) => money.amountFormatter({ amount: value })}
                         />
                     </Col>
-                    <Col className="gutter-row" span={5} offset={1}>
+                    <Col className="gutter-row" span={6} offset={0}>
                         <p
                             style={{
                                 paddingLeft: '1px',
