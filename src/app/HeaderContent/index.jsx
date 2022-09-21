@@ -14,12 +14,12 @@ import {
 } from '@ant-design/icons';
 import photo from '@/style/images/photo.png';
 
-import { logout } from '@/redux/auth/actions';
+// import { logout } from '@/redux/auth/actions';
 import history from '@/utils/history';
 import uniqueId from '@/utils/uinqueId';
 
 export default function HeaderContent() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { SubMenu } = Menu;
 
   const profileDropdown = (
@@ -43,7 +43,15 @@ export default function HeaderContent() {
               <Menu.Item key={'Customer'} icon={<CustomerServiceOutlined />}>
                 <Link to={'/customer'} />
                 Customer
-          </Menu.Item>
+              </Menu.Item>
+              <Menu.Item key={'Ledger'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/ledger'} />
+                Ledger
+              </Menu.Item>
+              <Menu.Item key={'Journal'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/journal'} />
+                Journal
+              </Menu.Item>
               <Menu.Item key="1">Option 1</Menu.Item>
               <Menu.Item key="2">Option 2</Menu.Item>
             </Menu.ItemGroup>

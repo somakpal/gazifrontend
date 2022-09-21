@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { crud } from '@/redux/crud/actions';
 import { useCrudContext } from '@/context/crud';
 import { selectUpdatedItem } from '@/redux/crud/selectors';
-
-import { isDate } from '@/utils/helpers';
-import { selectCurrentItem } from '@/redux/crud/selectors';
-
+// import { isDate } from '@/utils/helpers';
+// import { selectCurrentItem } from '@/redux/crud/selectors';
 import { Button, Form } from 'antd';
 import Loading from '@/components/Loading';
 
@@ -16,18 +13,13 @@ export default function UpdateForm({ config, formElements }) {
   let { entity } = config;
   const dispatch = useDispatch();
   const { current, isLoading, isSuccess } = useSelector(selectUpdatedItem);
-
   const { state, crudContextAction } = useCrudContext();
-
-  /////
-
   const { panel, collapsedBox, readBox } = crudContextAction;
 
   const showCurrentRecord = () => {
     readBox.open();
   };
 
-  /////
   const [form] = Form.useForm();
 
   const onSubmit = (fieldsValue) => {
@@ -38,6 +30,7 @@ export default function UpdateForm({ config, formElements }) {
   useEffect(() => {
     if (current) {
       let newValues = { ...current };
+      console.log('somak master: ' + JSON.stringify(newValues));
       if (newValues.birthday) {
         newValues = {
           ...newValues,
@@ -68,8 +61,7 @@ export default function UpdateForm({ config, formElements }) {
           updated: dayjs(newValues['updated']),
         };
       }
-
-      console.log('🚀 ~ file: index.jsx ~ line 40 ~ useEffect ~ obj', newValues);
+      // console.log('🚀 ~ file: index.jsx ~ line 40 ~ useEffect ~ obj', newValues);
       form.setFieldsValue(newValues);
     }
   }, [current]);

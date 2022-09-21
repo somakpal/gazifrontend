@@ -1,29 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Divider } from 'antd';
-
 import { Button, PageHeader, Row, Col, Descriptions, Tag } from 'antd';
 import { FileTextOutlined, CloseCircleOutlined } from '@ant-design/icons';
-
-import { useSelector, useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import { useErpContext } from '@/context/erp';
 import uniqueId from '@/utils/uinqueId';
-
 import { selectRecordPaymentItem } from '@/redux/erp/selectors';
 import { useMoney } from '@/settings';
-
 import RecordPayment from './RecordPayment';
 
 export default function Payment({ config }) {
-  const { entity, ENTITY_NAME } = config;
-
+  const { ENTITY_NAME } = config;
   const { erpContextAction } = useErpContext();
-
   const { current: currentItem } = useSelector(selectRecordPaymentItem);
-
   const { readPanel, recordPanel } = erpContextAction;
   const money = useMoney();
-
   const [itemslist, setItemsList] = useState([]);
   const [currentErp, setCurrentErp] = useState({
     status: '',
@@ -69,7 +60,7 @@ export default function Payment({ config }) {
             onBack={() => readPanel.close()}
             title={`Record Payment for ${ENTITY_NAME} # ${currentErp.number}/${
               currentErp.year || ''
-            }`}
+              }`}
             ghost={false}
             tags={<Tag color="volcano">{currentErp.status}</Tag>}
             // subTitle="This is cuurent erp page"

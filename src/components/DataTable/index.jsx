@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Dropdown, Button, PageHeader, Table, Col } from 'antd';
+import { Dropdown, Button, PageHeader, Table } from 'antd';
 
 import { EllipsisOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,7 +9,7 @@ import { selectListItems } from '@/redux/crud/selectors';
 import uniqueId from '@/utils/uinqueId';
 
 export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
-  let { entity, dataTableColumns, dataTableTitle } = config;
+  let { entity, relations = '', dataTableColumns, dataTableTitle } = config;
 
   dataTableColumns = [
     ...dataTableColumns,
@@ -30,12 +30,14 @@ export default function DataTable({ config, DropDownRowMenu, AddNewItem }) {
   const dispatch = useDispatch();
 
   const handelDataTableLoad = useCallback((pagination) => {
-    const options = { page: pagination.current || 1 };
+    const options = { page: pagination.current || 1, relations: relations };
     dispatch(crud.list({ entity, options }));
   }, []);
 
   useEffect(() => {
-    dispatch(crud.list({ entity }));
+    const options = { page: pagination.current || 1, relations: relations };
+    dispatch(crud.list({ entity, options }));
+    //dispatch(crud.list({ entity }));
   }, []);
 
   return (

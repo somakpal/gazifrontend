@@ -1,32 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
-
 import { useDebounce } from 'react-use';
 import { Select, Empty } from 'antd';
-
 import { SearchOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { crud } from '@/redux/crud/actions';
-
 import { useCrudContext } from '@/context/crud';
 import { selectSearchedItems } from '@/redux/crud/selectors';
-
 function SearchItemComponent({ config, onRerender }) {
-  let { entity, searchConfig } = config;
-
+  let { entity, searchConfig, relations = '' } = config;
   const { displayLabels, searchFields, outputValue = 'id' } = searchConfig;
-
   const dispatch = useDispatch();
   const { crudContextAction } = useCrudContext();
   const { panel, collapsedBox, readBox } = crudContextAction;
   const { result, isLoading, isSuccess } = useSelector(selectSearchedItems);
-
   const [selectOptions, setOptions] = useState([]);
   const [currentValue, setCurrentValue] = useState(undefined);
-
   const isSearching = useRef(false);
-
   const [searching, setSearching] = useState(false);
-
   const [valToSearch, setValToSearch] = useState('');
   const [debouncedValue, setDebouncedValue] = useState('');
 
@@ -47,6 +37,7 @@ function SearchItemComponent({ config, onRerender }) {
       const options = {
         q: debouncedValue,
         fields: searchFields,
+        relations: relations,
       };
       dispatch(crud.search({ entity, options }));
     }
@@ -69,9 +60,7 @@ function SearchItemComponent({ config, onRerender }) {
     const currentItem = result.find((item) => {
       return item[outputValue] === data;
     });
-
     dispatch(crud.currentItem({ data: currentItem }));
-
     panel.open();
     collapsedBox.open();
     readBox.open();

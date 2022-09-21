@@ -10,13 +10,16 @@ export default function AutoCompleteAsync({
   searchFields,
   outputValue = 'id',
   value, /// this is for update
-  onChange, /// this is for update    
+  onChange, /// this is for update
 }) {
   const [selectOptions, setOptions] = useState([]);
   const [currentValue, setCurrentValue] = useState(undefined);
+
   const isUpdating = useRef(true);
   const isSearching = useRef(false);
+
   const [searching, setSearching] = useState(false);
+
   const [valToSearch, setValToSearch] = useState('');
   const [debouncedValue, setDebouncedValue] = useState('');
 
@@ -47,6 +50,7 @@ export default function AutoCompleteAsync({
       };
       onFetch(() => asyncSearch(options));
     }
+
     return () => {
       cancel();
     };
@@ -73,14 +77,13 @@ export default function AutoCompleteAsync({
       }
     }
   }, [isSuccess, result]);
-
   useEffect(() => {
     // this for update Form , it's for setField
     if (value && isUpdating.current) {
       if (!isSearching.current) {
         setOptions([value]);
       }
-      setCurrentValue(value[outputValue] || value); // set nested value or value 
+      setCurrentValue(value[outputValue] || value); // set nested value or value
       onChange(value[outputValue] || value);
       isUpdating.current = false;
     }
@@ -90,6 +93,7 @@ export default function AutoCompleteAsync({
     <Select
       loading={isLoading}
       showSearch
+      allowClear
       placeholder={'Search Here'}
       defaultActiveFirstOption={false}
       showArrow={false}
@@ -97,19 +101,11 @@ export default function AutoCompleteAsync({
       notFoundContent={searching ? '... Searching' : 'Not Found'}
       value={currentValue}
       onSearch={onSearch}
-      onChange={(newValue, index) => {
-        if (onChange && newValue != undefined) {
-          onChange(newValue[outputValue] || newValue, index);
-          //setDisplayVal(index.children);
+      onChange={(newValue) => {
+        if (onChange) {
+          onChange(newValue[outputValue] || newValue);
         }
       }}
-      onClear={(e) => {
-        setCurrentValue(undefined);
-        setOptions([]);
-        onChange('');
-      }}
-      style={{ width: '100%', marginRight: '1rem' }}
-      allowClear
     >
       {selectOptions.map((optionField) => (
         <Select.Option

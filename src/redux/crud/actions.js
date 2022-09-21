@@ -45,7 +45,7 @@ export const crud = {
         });
 
         let data = await request.list({ entity, options });
-        console.log('somak..' + JSON.stringify(data));
+
         if (data.success === true) {
           const result = {
             items: data.result,
@@ -56,6 +56,7 @@ export const crud = {
               total: parseInt(data.pagination.count, 10),
             },
           };
+          console.log('somak RESULT BHaii..' + JSON.stringify(result));
           dispatch({
             type: actionTypes.REQUEST_SUCCESS,
             keyState: 'list',
@@ -79,16 +80,15 @@ export const crud = {
         });
 
         let data = await request.create({ entity, jsonData });
-
+        console.log('somak data result', data.result);
         if (data.success === true) {
+          dispatch({
+            type: actionTypes.CURRENT_ITEM,
+            payload: data.result,
+          });
           dispatch({
             type: actionTypes.REQUEST_SUCCESS,
             keyState: 'create',
-            payload: data.result,
-          });
-
-          dispatch({
-            type: actionTypes.CURRENT_ITEM,
             payload: data.result,
           });
         } else {
@@ -174,6 +174,15 @@ export const crud = {
             type: actionTypes.REQUEST_SUCCESS,
             keyState: 'delete',
             payload: data.result,
+          });
+          dispatch({
+            type: actionTypes.REQUEST_SUCCESS,
+            keyState: 'update',
+            payload: null,
+          });
+          dispatch({
+            type: actionTypes.CURRENT_ITEM,
+            payload: null,
           });
         } else {
           dispatch({

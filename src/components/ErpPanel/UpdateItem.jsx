@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Divider, Space } from 'antd';
 import dayjs from 'dayjs';
-import { Button, PageHeader, Row, Col, Tag } from 'antd';
-
+import { Button, PageHeader, Tag } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { erp } from '@/redux/erp/actions';
-
 import { useErpContext } from '@/context/erp';
 import uniqueId from '@/utils/uinqueId';
 import { selectUpdatedItem } from '@/redux/erp/selectors';
 import Loading from '@/components/Loading';
-
 import { CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 function SaveForm({ form, config }) {
@@ -34,7 +31,7 @@ export default function UpdateItem({ config, UpdateForm }) {
   const { current, isLoading, isSuccess } = useSelector(selectUpdatedItem);
   const [form] = Form.useForm();
   const [subTotal, setSubTotal] = useState(0);
-  const [autoCompleteValue, setAutoCompleteValue] = useState('');
+  // const [autoCompleteValue, setAutoCompleteValue] = useState('');
 
   const handelValuesChange = (changedValues, values) => {
     const items = values['items'];

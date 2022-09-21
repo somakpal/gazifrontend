@@ -1,7 +1,7 @@
 import * as actionTypes from './types';
 
 const INITIAL_STATE = {
-  currencySymbol: '$',
+  currencySymbol: '₹',
   currencyPosition: 'before',
   decimalSep: '.',
   ThousandSep: ',',

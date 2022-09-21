@@ -1,28 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
-
 import { AutoComplete, Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { erp } from '@/redux/erp/actions';
-import { request } from '@/request';
 import { useErpContext } from '@/context/erp';
 import { selectSearchedItems } from '@/redux/erp/selectors';
-
 import { Empty } from 'antd';
 
 export default function Search({ config }) {
   let { entity, searchConfig } = config;
-
   const { displayLabels, searchFields, outputValue = 'id' } = searchConfig;
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const [options, setOptions] = useState([]);
-
   const { erpContextAction } = useErpContext();
   const { panel, collapsedBox, readBox } = erpContextAction;
-
   const { result, isLoading, isSuccess } = useSelector(selectSearchedItems);
-
   const isTyping = useRef(false);
 
   let delayTimer = null;

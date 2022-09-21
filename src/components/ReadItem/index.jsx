@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Row, Col, Button } from 'antd';
+import { Row, Col } from 'antd';
 import { useSelector } from 'react-redux';
-
 import dayjs from 'dayjs';
-
 import { useCrudContext } from '@/context/crud';
 import { selectCurrentItem } from '@/redux/crud/selectors';
 import { valueByString } from '@/utils/helpers';
@@ -14,7 +12,6 @@ export default function ReadItem({ config }) {
   const { state } = useCrudContext();
   const { isReadBoxOpen } = state;
   const [listState, setListState] = useState([]);
-
   const isFirstRun = useRef(true);
   useEffect(() => {
     if (isFirstRun.current) {

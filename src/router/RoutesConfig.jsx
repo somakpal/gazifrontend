@@ -68,4 +68,16 @@ export const routesConfig = [
     path: '/role',
     component: 'Role',
   },
+  {
+    path: '/ledger',
+    component: 'Ledger',
+  },
+  {
+    path: '/journal/:id',
+    component: 'Journal',
+  },
+  {
+    path: '/journal',
+    component: 'Journal',
+  },
 ];

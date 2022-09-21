@@ -1,39 +1,42 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { request } from '@/request';
-import useOnFetch from '@/hooks/useOnFetch';
-import { useDebounce } from 'react-use';
-import { Select } from 'antd';
 
-export default function AutoCompleteAsync({
-  entity,
-  displayLabels,
-  searchFields,
-  outputValue = 'id',
-  value, /// this is for update
-  onChange, /// this is for update    
-}) {
+import { useDebounce } from 'react-use';
+import { Select, Empty } from 'antd';
+
+import { SearchOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { crud } from '@/redux/crud/actions';
+
+import { useCrudContext } from '@/context/crud';
+import { selectSearchedItems } from '@/redux/crud/selectors';
+
+function SearchItemComponent({ config, onRerender }) {
+  let { entity, searchConfig } = config;
+
+  const { displayLabels, searchFields, outputValue = 'id' } = searchConfig;
+
+  const dispatch = useDispatch();
+  const { crudContextAction } = useCrudContext();
+  const { panel, collapsedBox, readBox } = crudContextAction;
+  const { result, isLoading, isSuccess } = useSelector(selectSearchedItems);
+
   const [selectOptions, setOptions] = useState([]);
   const [currentValue, setCurrentValue] = useState(undefined);
-  const isUpdating = useRef(true);
+
   const isSearching = useRef(false);
+
   const [searching, setSearching] = useState(false);
+
   const [valToSearch, setValToSearch] = useState('');
   const [debouncedValue, setDebouncedValue] = useState('');
 
   const [, cancel] = useDebounce(
     () => {
-      //  setState("Typing stopped");
       setDebouncedValue(valToSearch);
     },
     500,
     [valToSearch]
   );
-
-  const asyncSearch = (options) => {
-    return request.search({ entity, options });
-  };
-
-  let { onFetch, result, isSuccess, isLoading } = useOnFetch();
 
   const labels = (optionField) => {
     return displayLabels.map((x) => optionField[x]).join(' ');
@@ -45,7 +48,7 @@ export default function AutoCompleteAsync({
         q: debouncedValue,
         fields: searchFields,
       };
-      onFetch(() => asyncSearch(options));
+      dispatch(crud.search({ entity, options }));
     }
     return () => {
       cancel();
@@ -62,6 +65,18 @@ export default function AutoCompleteAsync({
     }
   };
 
+  const onSelect = (data) => {
+    const currentItem = result.find((item) => {
+      return item[outputValue] === data;
+    });
+
+    dispatch(crud.currentItem({ data: currentItem }));
+
+    panel.open();
+    collapsedBox.open();
+    readBox.open();
+    onRerender();
+  };
   useEffect(() => {
     if (isSearching.current) {
       if (isSuccess) {
@@ -74,51 +89,38 @@ export default function AutoCompleteAsync({
     }
   }, [isSuccess, result]);
 
-  useEffect(() => {
-    // this for update Form , it's for setField
-    if (value && isUpdating.current) {
-      if (!isSearching.current) {
-        setOptions([value]);
-      }
-      setCurrentValue(value[outputValue] || value); // set nested value or value 
-      onChange(value[outputValue] || value);
-      isUpdating.current = false;
-    }
-  }, [value]);
-
   return (
     <Select
       loading={isLoading}
       showSearch
-      placeholder={'Search Here'}
+      allowClear
+      placeholder={<SearchOutlined style={{ float: 'right', padding: '8px 0' }} />}
       defaultActiveFirstOption={false}
       showArrow={false}
       filterOption={false}
-      notFoundContent={searching ? '... Searching' : 'Not Found'}
+      notFoundContent={searching ? '... Searching' : <Empty />}
       value={currentValue}
       onSearch={onSearch}
-      onChange={(newValue, index) => {
-        if (onChange && newValue != undefined) {
-          onChange(newValue[outputValue] || newValue, index);
-          //setDisplayVal(index.children);
-        }
-      }}
-      onClear={(e) => {
-        setCurrentValue(undefined);
-        setOptions([]);
-        onChange('');
-      }}
-      style={{ width: '100%', marginRight: '1rem' }}
-      allowClear
+      style={{ width: '100%' }}
+      onSelect={onSelect}
     >
       {selectOptions.map((optionField) => (
-        <Select.Option
-          key={optionField[outputValue] || optionField}
-          value={optionField[outputValue] || optionField}
-        >
+        <Select.Option key={optionField[outputValue]} value={optionField[outputValue]}>
           {labels(optionField)}
         </Select.Option>
       ))}
     </Select>
   );
+}
+
+export default function SearchItem({ config }) {
+  const [state, setState] = useState([0]);
+
+  const onRerender = () => {
+    setState([state + 1]);
+  };
+
+  return state.map((comp) => (
+    <SearchItemComponent key={comp} config={config} onRerender={onRerender} />
+  ));
 }

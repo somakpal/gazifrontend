@@ -121,6 +121,26 @@ const request = {
     }
   },
 
+  balances: async ({ entity, options = {} }) => {
+    try {
+      let query = '?';
+      for (var key in options) {
+        query += key + '=' + options[key] + '&';
+      }
+      query = query.slice(0, -1);
+
+      const response = await axios.get(entity + '/balances' + query);
+
+      successHandler(response, {
+        notifyOnSuccess: false,
+        notifyOnFailed: false,
+      });
+      return response.data;
+    } catch (error) {
+      return errorHandler(error);
+    }
+  },
+
   post: async ({ entity, jsonData, options = {} }) => {
     try {
       const response = await axios.post(entity, jsonData);

@@ -7,7 +7,7 @@ import logoIcon from '@/style/images/logo-icon.png';
 import logoText from '@/style/images/logo-text.png';
 
 import {
-  DesktopOutlined,
+  // DesktopOutlined,
   SettingOutlined,
   CustomerServiceOutlined,
   FileTextOutlined,
@@ -16,7 +16,7 @@ import {
   TeamOutlined,
   UserOutlined,
   CreditCardOutlined,
-  BankOutlined,
+  // BankOutlined,
 } from '@ant-design/icons';
 
 const { Sider } = Layout;
@@ -50,7 +50,7 @@ export default function Navigation() {
           <img
             src={logoIcon}
             alt="Logo"
-            // style={{ margin: "0 auto 40px", display: "block" }}
+          // style={{ margin: "0 auto 40px", display: "block" }}
           />
 
           {!showLogoApp && (
@@ -62,13 +62,13 @@ export default function Navigation() {
             <Link to={'/'} />
             Dashboard
           </Menu.Item>
-          <Menu.Item key={'Customer'} icon={<CustomerServiceOutlined />}>
-            <Link to={'/customer'} />
-            Customer
+          <Menu.Item key={'Ledger'} icon={<CustomerServiceOutlined />}>
+            <Link to={'/ledger'} />
+            Ledger
           </Menu.Item>
-          <Menu.Item key={'Invoice'} icon={<FileTextOutlined />}>
-            <Link to={'/invoice'} />
-            Invoice
+          <Menu.Item key={'Journal'} icon={<FileTextOutlined />}>
+            <Link to={'/journal'} />
+            Journal
           </Menu.Item>
           <Menu.Item key={'Quote'} icon={<FileSyncOutlined />}>
             <Link to={'/quote'} />

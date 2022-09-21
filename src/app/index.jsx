@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
 import Router from '@/router';
-
-import useNetwork from '@/hooks/useNetwork';
-
-import { Layout, notification } from 'antd';
-
+// import useNetwork from '@/hooks/useNetwork';
+import { Layout } from 'antd';
 import Navigation from '@/app/Navigation';
-
 import { useSelector } from 'react-redux';
 import { selectAuth } from '@/redux/auth/selectors';
 import HeaderContent from '@/app/HeaderContent';
