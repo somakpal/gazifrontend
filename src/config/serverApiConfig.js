@@ -1,6 +1,6 @@
 export const API_BASE_URL =
   process.env.NODE_ENV == 'production' || process.env.REACT_APP_DEV_REMOTE == 'remote'
-    ? 'https://gazi-backend-dev.herokuapp.com/api/'
+    ? 'https://appsone.herokuapp.com/api/'
     : 'http://localhost:5000/api/';
 export const DOWNLOAD_BASE_URL =
   process.env.NODE_ENV == 'production' || process.env.REACT_APP_DEV_REMOTE == 'remote'

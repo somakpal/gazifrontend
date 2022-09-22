@@ -38,7 +38,18 @@ export default function Ledger() {
         },
         { title: 'Code', dataIndex: 'code' },
         { title: 'Ledger', dataIndex: 'name' },
-        { title: 'Balance', dataIndex: 'balance' },
+        {
+            dataIndex: "balance",
+            title: "Balance",
+            render: (text, record) => {
+                return {
+                    props: {
+                        style: { color: parseInt(text) > 0 ? "black" : "red" }
+                    },
+                    children: <div>{text}</div>
+                };
+            }
+        },
     ];
     const ADD_NEW_ENTITY = 'Add new Ledger';
     const DATATABLE_TITLE = 'Ledgers List';
