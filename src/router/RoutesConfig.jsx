@@ -34,7 +34,7 @@ import React from 'react';
 export const routesConfig = [
   {
     path: '/',
-    component: 'Dashboard',
+    component: 'Ledger',
   },
   {
     path: '/customer',
@@ -69,15 +69,19 @@ export const routesConfig = [
     component: 'Role',
   },
   {
-    path: '/ledger',
+    path: '/ledger/:mode',
     component: 'Ledger',
   },
   {
-    path: '/journal/:id',
+    path: '/journal/:mode',
     component: 'Journal',
   },
   {
-    path: '/journal',
-    component: 'Journal',
+    path: '/sale/:mode',
+    component: 'Sale',
+  },
+  {
+    path: '/product',
+    component: 'Product',
   },
 ];

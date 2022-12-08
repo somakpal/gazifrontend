@@ -44,13 +44,21 @@ export default function HeaderContent() {
                 <Link to={'/customer'} />
                 Customer
               </Menu.Item>
-              <Menu.Item key={'Ledger'} icon={<CustomerServiceOutlined />}>
-                <Link to={'/ledger'} />
-                Ledger
+              <Menu.Item key={'LedgerCreate'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/ledger/create'} />
+                Ledger Create
               </Menu.Item>
-              <Menu.Item key={'Journal'} icon={<CustomerServiceOutlined />}>
-                <Link to={'/journal'} />
-                Journal
+              <Menu.Item key={'LedgerRead'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/ledger/read'} />
+                Ledger Read
+              </Menu.Item>
+              <Menu.Item key={'JournalCreate'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/journal/create'} />
+                Journal Create
+              </Menu.Item>
+              <Menu.Item key={'JournalRead'} icon={<CustomerServiceOutlined />}>
+                <Link to={'/journal/read'} />
+                Journal Read
               </Menu.Item>
               <Menu.Item key="1">Option 1</Menu.Item>
               <Menu.Item key="2">Option 2</Menu.Item>

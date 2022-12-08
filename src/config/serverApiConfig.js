@@ -1,6 +1,6 @@
 export const API_BASE_URL =
   process.env.NODE_ENV == 'production' || process.env.REACT_APP_DEV_REMOTE == 'remote'
-    ? 'https://appsone.herokuapp.com/api/'
+    ? 'https://absent-note-production.up.railway.app/api/'
     : 'http://localhost:5000/api/';
 export const DOWNLOAD_BASE_URL =
   process.env.NODE_ENV == 'production' || process.env.REACT_APP_DEV_REMOTE == 'remote'

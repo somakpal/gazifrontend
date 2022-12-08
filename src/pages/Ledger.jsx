@@ -1,9 +1,10 @@
 import React from 'react';
-
-import CrudModule from '@/modules/CrudModule';
+import { ErpContextProvider } from '@/context/erp';
+import LedgerModule from '@/modules/LedgerModule';
 import LedgerForm from '@/forms/LedgerForm';
 
-export default function Ledger() {
+export default function Ledger({ match }) {
+    const mode = match.params.mode ? match.params.mode : 'read';
     const entity = 'ledger';
     const searchConfig = {
         displayLabels: ['name'],
@@ -12,7 +13,7 @@ export default function Ledger() {
     };
 
     const PANEL_TITLE = 'Ledger Panel';
-    const dataTableTitle = 'Ledger Lists';
+    const dataTableTitle = 'Ledgers List';
     const entityDisplayLabels = ['name'];
 
     const readColumns = [
@@ -22,29 +23,17 @@ export default function Ledger() {
     ];
     const linkval = '/journal';
     const dataTableColumns = [
-        {
-            dataIndex: "id",
-            title: "",
-            render: (Value) => {
-                return (
-                    <a
-                        onClick={(event) => event.stopPropagation()}
-                        href={linkval + '/' + Value}
-                    >
-                        Journals
-                    </a>
-                );
-            }
-        },
         { title: 'Code', dataIndex: 'code' },
         { title: 'Ledger', dataIndex: 'name' },
+        { title: 'Debit', dataIndex: 'debitTotal' },
+        { title: 'Credit', dataIndex: 'creditTotal' },
         {
             dataIndex: "balance",
             title: "Balance",
             render: (text, record) => {
                 return {
                     props: {
-                        style: { color: parseInt(text) > 0 ? "black" : "red" }
+                        style: { color: parseInt(text) >= 0 ? "black" : "red" }
                     },
                     children: <div>{text}</div>
                 };
@@ -70,12 +59,15 @@ export default function Ledger() {
         dataTableColumns,
         searchConfig,
         entityDisplayLabels,
+        mode,
     };
     return (
-        <CrudModule
-            createForm={<LedgerForm />}
-            updateForm={<LedgerForm isUpdateForm={true} />}
-            config={config}
-        />
+        <ErpContextProvider>
+            <LedgerModule
+                createForm={<LedgerForm />}
+                updateForm={<LedgerForm isUpdateForm={true} />}
+                config={config}
+            />
+        </ErpContextProvider>
     );
 }

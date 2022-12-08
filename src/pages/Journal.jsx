@@ -1,11 +1,12 @@
 import React from 'react';
 import dayjs from 'dayjs';
-// import CrudModule from '@/modules/CrudModule';
-import JournalCrudModule from '@/modules/JournalCrudModule';
+import { ErpContextProvider } from '@/context/erp';
+import JournalModule from '@/modules/JournalModule';
 import JournalForm from '@/forms/JournalForm';
 
 export default function Journal({ match }) {
-    const ledgerId = match.params.id ? match.params.id : '';
+    const mode = match.params.mode ? match.params.mode : 'read';
+    // const ledgerId = match.params.id ? match.params.id : '';
     //match.params.id || '';
     // console.log('somak bhai: ' + ledgerId);
     const entity = 'journal';
@@ -37,6 +38,7 @@ export default function Journal({ match }) {
                 return dayjs(date).format('DD/MM/YYYY');
             },
         },
+        { title: "Code", dataIndex: ['ledger', 'code'] },
         { title: "Ledger", dataIndex: ['ledger', 'name'] },
         { title: 'Cr/Dr', dataIndex: 'jrtype' },
         { title: 'Amount', dataIndex: 'amount' },
@@ -61,22 +63,17 @@ export default function Journal({ match }) {
         dataTableColumns,
         searchConfig,
         entityDisplayLabels,
-        ledgerId
+        mode,
     };
-    // return (
-    //     <CrudModule
-    //         createForm={<JournalForm />}
-    //         updateForm={<JournalForm isUpdateForm={true} />}
-    //         config={config}
-    //     />
-    // );
 
     return (
-        <JournalCrudModule
-            createForm={<JournalForm />}
-            updateForm={<JournalForm isUpdateForm={true} />}
-            config={config}
-        />
+        <ErpContextProvider>
+            <JournalModule
+                createForm={<JournalForm />}
+                updateForm={<JournalForm isUpdateForm={true} />}
+                config={config}
+            />
+        </ErpContextProvider>
     );
 
 

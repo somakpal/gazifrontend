@@ -62,40 +62,34 @@ export default function Navigation() {
             <Link to={'/'} />
             Dashboard
           </Menu.Item>
-          <Menu.Item key={'Ledger'} icon={<CustomerServiceOutlined />}>
-            <Link to={'/ledger'} />
-            Ledger
+          <Menu.Item key={'LedgerCreate'} icon={<CustomerServiceOutlined />}>
+            <Link to={'/ledger/create'} />
+            Ledger New
           </Menu.Item>
-          <Menu.Item key={'Journal'} icon={<FileTextOutlined />}>
-            <Link to={'/journal'} />
-            Journal
+          <Menu.Item key={'LedgerRead'} icon={<FileSyncOutlined />}>
+            <Link to={'/ledger/read'} />
+            Ledger List
           </Menu.Item>
-          <Menu.Item key={'Quote'} icon={<FileSyncOutlined />}>
-            <Link to={'/quote'} />
-            Quote
+          <Menu.Item key={'JournalCreate'} icon={<FileTextOutlined />}>
+            <Link to={'/journal/create'} />
+            Journal New
           </Menu.Item>
-          <Menu.Item key={'PaymentInvoice'} icon={<CreditCardOutlined />}>
-            <Link to={'/payment/invoice'} />
-            Payment Invoice
+          <Menu.Item key={'JournalRead'} icon={<CreditCardOutlined />}>
+            <Link to={'/journal/read'} />
+            Journal List
           </Menu.Item>
-          <Menu.Item key={'Employee'} icon={<UserOutlined />}>
-            <Link to={'/employee'} />
-            Employee
+          <Menu.Item key={'SaleCreate'} icon={<UserOutlined />}>
+            <Link to={'/sale/create'} />
+            Sale New
           </Menu.Item>
-          <Menu.Item key={'Admin'} icon={<TeamOutlined />}>
-            <Link to={'/admin'} />
-            Admin
+          <Menu.Item key={'SaleRead'} icon={<TeamOutlined />}>
+            <Link to={'/sale/read'} />
+            Sale List
           </Menu.Item>
-          <SubMenu key={'Settings'} icon={<SettingOutlined />} title={'Settings'}>
-            <Menu.Item key={'PaymentMode'}>
-              <Link to={'/payment/mode'} />
-              Payment Mode
-            </Menu.Item>
-            <Menu.Item key={'Role'}>
-              <Link to={'/role'} />
-              Role
-            </Menu.Item>
-          </SubMenu>
+          <Menu.Item key={'ProductRead'} icon={<TeamOutlined />}>
+            <Link to={'/product'} />
+            Product List
+          </Menu.Item>          
         </Menu>
       </Sider>
     </>
